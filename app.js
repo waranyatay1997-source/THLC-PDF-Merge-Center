@@ -75,9 +75,38 @@ function onShipmentsChanged() {
 
 document.getElementById('addShipment').addEventListener('click', () => shipmentRows.appendChild(makeShipRow()));
 document.getElementById('clearShipments').addEventListener('click', () => {
+  // Reset the shipment table itself
   shipmentRows.innerHTML = '';
   ensureRow();
-  onShipmentsChanged();
+
+  // Everything downstream of the shipment list is now stale — clear it all rather
+  // than leaving orphaned scan results / dropped files that no longer match anything.
+  exportEntry = null;
+  goodsControl = null;
+  scanFiles = [];
+  reviewQueue = [];
+  missingQueue = [];
+  manualCarryOver = {};
+
+  // Reset Export Entry / Goods Control List dropzones back to empty
+  [exportZone, gclZone].forEach(z => z.classList.remove('filled'));
+  document.getElementById('exportList').textContent = '';
+  document.getElementById('gclList').textContent = '';
+  document.getElementById('exportCount').textContent = '0';
+  document.getElementById('gclCount').textContent = '0';
+  document.getElementById('exportInput').value = '';
+  document.getElementById('gclInput').value = '';
+
+  // Reset folder scan panel and its file input (so the same folder can be re-picked)
+  folderInput.value = '';
+  scanPanel.className = 'scan-panel';
+  scanTitle.textContent = 'No folder selected';
+  scanText.textContent = 'Select the main shipment folder to scan filenames only.';
+
+  renderReview();
+  renderMissing();
+  updateStepper();
+  setStatus('');
 });
 ensureRow();
 
