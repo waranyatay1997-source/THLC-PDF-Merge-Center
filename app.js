@@ -468,7 +468,7 @@ document.getElementById('confirmMerge').addEventListener('click', async () => {
 // "cloud-only" placeholders can briefly fail to read while Windows fetches their content.
 // This does NOT force a download (browsers have no API for that); it just gives the OS a
 // few short windows to finish a download that may already be in progress.
-async function readFileWithRetry(file, attempts = 3, delayMs = 700) {
+async function readFileWithRetry(file, attempts = 5, delayMs = 2000) {
   let lastErr;
   for (let i = 0; i < attempts; i++) {
     try {
