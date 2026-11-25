@@ -83,15 +83,17 @@
     <div id="missingList"></div>
   </section>
 
-  <section class="merge-bar">
-    <div class="license-info">
-      <span class="lock">▣</span>
-      <div><strong>THLC License</strong><small id="licenseName">Always appended as the final PDF — locked, cannot be reordered</small></div>
-    </div>
-    <label class="btn btn-outline btn-sm">Replace license<input id="licenseInput" type="file" accept="application/pdf,.pdf" hidden></label>
-    <button class="btn btn-primary" id="mergeBtn">Merge PDF <span>→</span></button>
-  </section>
-  <p class="merge-status" id="mergeStatus"></p>
+  <div class="merge-dock">
+    <p class="merge-status" id="mergeStatus"></p>
+    <section class="merge-bar">
+      <div class="license-info">
+        <span class="lock">▣</span>
+        <div><strong>THLC License</strong><small id="licenseName">Always appended as the final PDF — locked, cannot be reordered</small></div>
+      </div>
+      <label class="btn btn-outline btn-sm">Replace license<input id="licenseInput" type="file" accept="application/pdf,.pdf" hidden></label>
+      <button class="btn btn-primary" id="mergeBtn">Merge PDF <span>→</span></button>
+    </section>
+  </div>
 </main>
 
 <div class="modal hidden" id="nameModal">
